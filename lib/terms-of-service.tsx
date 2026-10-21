@@ -1,0 +1,42 @@
+export const sections = [
+    { id: "acceptance", number: "01", title: "Acceptance of These Terms" },
+    { id: "platform", number: "02", title: "About the Platform" },
+    {
+        id: "eligibility",
+        number: "03",
+        title: "Eligibility to Use the Platform",
+    },
+    { id: "accounts", number: "04", title: "User Accounts" },
+    { id: "donor-registration", number: "05", title: "Donor Registration" },
+    {
+        id: "medical",
+        number: "06",
+        title: "Blood Donation & Medical Disclaimer",
+    },
+    { id: "requests", number: "07", title: "Blood Requests" },
+    { id: "emergency", number: "08", title: "Emergency SOS Requests" },
+    { id: "roles", number: "09", title: "User Roles" },
+    { id: "privacy", number: "10", title: "Privacy & Personal Information" },
+    {
+        id: "contact-protection",
+        number: "11",
+        title: "Contact Information Protection",
+    },
+    { id: "documents", number: "12", title: "Documents & Verification" },
+    {
+        id: "notifications",
+        number: "13",
+        title: "Notifications & Communications",
+    },
+    { id: "prohibited", number: "14", title: "Prohibited Activities" },
+    { id: "compatibility", number: "15", title: "Blood Group Compatibility" },
+    { id: "intellectual", number: "16", title: "Intellectual Property" },
+    { id: "third-party", number: "17", title: "Third-Party Services" },
+    { id: "accuracy", number: "18", title: "Accuracy of Information" },
+    {
+        id: "responsibility",
+        number: "19",
+        title: "Limitation of Responsibility",
+    },
+    { id: "security", number: "20", title: "Security" },
+];

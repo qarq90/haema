@@ -1,0 +1,33 @@
+Abstract vector illustration for a blood donation brand called HAEMA.
+Transparent background. Square 1:1 composition.
+
+Central motif: a single elegant blood drop, smooth and rounded, filled 
+with a solid deep red (#be151b). Surrounding the drop are thin, flowing 
+line-art ribbons that curve outward like ripples or lifelines that is suggesting 
+circulation, connection, and the ripple effect of one donation saving 
+multiple lives. The ribbons are drawn in charcoal (#323232) with white 
+(#ffffff) highlights where they overlap the drop.
+
+Optionally, two tiny minimal icons floating near the drop that is a heart and 
+a circle of connected dots that is rendered in thin strokes, no fills, 
+evenly spaced.
+
+Style: pure flat SVG vector illustration. Crisp geometric shapes, 
+uniform stroke width (4 units on a 512×512 canvas), rounded line caps 
+and joins. No gradients, no textures, no shadows, no 3D. 
+Feels like a modern icon set or geometric logo mark scaled up.
+
+Palette:
+- primary:    #be151b  (deep red that is the drop)
+- secondary:  #ffffff  (white that is highlights, negative space)
+- tertiary:   #323232  (charcoal that is thin line work only)
+- transparent background
+
+Mood: calm, premium, minimal, hopeful. Medical but warm. 
+No gore, no needles, no hospital imagery.
+
+Composition: centered, symmetrical, generous negative space around 
+the edges so it sits comfortably inside a circle or square container.
+
+--ar 1:1 --style raw --v 6 --no background, gradients, shadows, 3D, 
+text, watermark, gore, needles --stylize 50

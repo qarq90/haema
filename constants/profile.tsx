@@ -1,0 +1,87 @@
+import { BloodProfile } from "@/types/profile";
+
+export const BLOOD_TYPES = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+export const GENDERS = ["Female", "Male", "Other", "Prefer not to say"];
+
+export const MEDICATIONS = [
+    "None",
+    "Antibiotics",
+    "Blood thinners",
+    "Isotretinoin (Accutane)",
+    "Insulin",
+    "Beta blockers",
+    "Antidepressants (SSRIs)",
+    "Aspirin (daily)",
+    "Statins",
+    "Thyroid medication",
+    "Anticoagulants",
+    "Anticonvulsants",
+    "Immunosuppressants",
+    "Hormonal contraceptives",
+    "Pain relievers (opioids)",
+    "Corticosteroids",
+    "Antihistamines (daily)",
+    "Antivirals",
+    "Chemotherapy drugs",
+    "Other",
+];
+
+export const ILLNESSES = [
+    "None",
+    "Diabetes (Type 1)",
+    "Diabetes (Type 2)",
+    "Hypertension",
+    "Heart disease",
+    "Asthma",
+    "HIV / Hepatitis B or C",
+    "Cancer (active)",
+    "Kidney disease",
+    "Liver disease",
+    "Thyroid disorder",
+    "Epilepsy",
+    "Anemia",
+    "Autoimmune disorder",
+    "Tuberculosis",
+    "Malaria (recent)",
+    "Dengue (recent)",
+    "Blood clotting disorder",
+    "Sickle cell disease",
+    "Other",
+];
+
+export const ALLERGIES = [
+    "None",
+    "Penicillin",
+    "Aspirin",
+    "Latex",
+    "Peanuts",
+    "Shellfish",
+    "Eggs",
+    "Dairy",
+    "Soy",
+    "Wheat / Gluten",
+    "Insect stings",
+    "Pollen",
+    "Dust",
+    "Nickel",
+    "Tree nuts",
+    "Fish",
+    "Sulfa drugs",
+    "Iodine / Contrast dye",
+    "Animal dander",
+    "Other",
+];
+
+export const EMPTY: BloodProfile = {
+    bloodType: "",
+    heightCm: "",
+    weightKg: "",
+    dateOfBirth: "",
+    gender: "",
+    lastDonation: "",
+    chronicConditions: [],
+    medications: [],
+    allergies: [],
+    emergencyContactName: "",
+    emergencyContactPhone: "",
+};
