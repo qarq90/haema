@@ -4,11 +4,11 @@ import { LuMapPin, LuCalendar, LuClock, LuDroplet } from "react-icons/lu";
 import { Button } from "../ui/button";
 import { Row } from "../ui/row";
 import { Camp } from "@/types/donate";
-import { slugify } from "@/functions/slugify";
 
 export function CampCard({ camp }: { camp: Camp }) {
     const low = camp.slotsLeft <= 10;
     const full = camp.slotsLeft === 0;
+    const past = camp.isPast ?? false;
 
     return (
         <div className="flex flex-col gap-4 rounded-xl border border-neutral-200 p-5 transition hover:border-red-500/40 dark:border-neutral-800">
@@ -33,23 +33,27 @@ export function CampCard({ camp }: { camp: Camp }) {
             <div className="mt-auto flex items-center justify-between">
                 <span
                     className={`text-xs font-semibold uppercase tracking-wide ${
-                        full
+                        past || full
                             ? "text-neutral-400"
                             : low
                               ? "text-red-500"
                               : "text-neutral-500"
                     }`}
                 >
-                    {full
+                    {past
+                        ? "Past camp"
+                        : full
                         ? "Full"
                         : `${camp.slotsLeft} of ${camp.slotsTotal} left`}
                 </span>
 
-                <Link href={`/camps/${slugify(camp.name)}/book`}>
-                    <Button disabled={full}>
-                        {full ? "Full" : "Book a Slot"}
-                    </Button>
-                </Link>
+                {past || full ? (
+                    <Button disabled>{past ? "Past" : "Full"}</Button>
+                ) : (
+                    <Link href={`/camps/${encodeURIComponent(camp.id)}/book`}>
+                        <Button>Book a Slot</Button>
+                    </Link>
+                )}
             </div>
         </div>
     );

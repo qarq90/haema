@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LuClock, LuCircleCheck, LuLoaderCircle } from "react-icons/lu";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 import { toast } from "../ui/toast";
 import { EMAIL_RE, PHONE_RE } from "@/constants/common";
@@ -10,16 +12,24 @@ import { Errors } from "@/types/booking";
 import { Camp } from "@/types/donate";
 
 export function BookingForm({ camp }: { camp: Camp }) {
+    const { isLoaded, isSignedIn, user } = useUser();
     const [slot, setSlot] = useState<string | null>(null);
-    const [name, setName] = useState("Jon Doe");
-    const [email, setEmail] = useState("jondoe@xyz.com");
-    const [phone, setPhone] = useState("8879662240");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [notes, setNotes] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [errors, setErrors] = useState<Errors>({});
 
     const slots = generateSlots(camp.startTime, camp.endTime);
     const canSubmit = !submitting;
+
+    useEffect(() => {
+        if (!isLoaded || !user) return;
+        setName(user.fullName ?? "");
+        setEmail(user.primaryEmailAddress?.emailAddress ?? "");
+        setPhone(user.primaryPhoneNumber?.phoneNumber ?? "");
+    }, [isLoaded, user]);
 
     function validate(): Errors {
         const next: Errors = {};
@@ -52,6 +62,7 @@ export function BookingForm({ camp }: { camp: Camp }) {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (submitting) return;
+        if (!isSignedIn) return;
 
         const next = validate();
         setErrors(next);
@@ -68,23 +79,41 @@ export function BookingForm({ camp }: { camp: Camp }) {
 
         setSubmitting(true);
         try {
-            await new Promise((r) => setTimeout(r, 1200));
+            const response = await fetch("/api/camps/bookings", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    campId: camp.id,
+                    slot,
+                    fullName: name,
+                    phone,
+                    notes,
+                }),
+            });
+            const result: {
+                booking?: { id: string };
+                error?: string;
+            } = await response.json();
+
+            if (!response.ok || !result.booking) {
+                throw new Error(result.error ?? "Booking could not be completed.");
+            }
 
             toast.add({
                 title: "Booking confirmed",
-                description: `${camp.name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} at ${slot}`,
+                description: `${camp.name} at ${slot}. Booking reference: ${result.booking.id}`,
             });
 
             setSlot(null);
-            setName("");
-            setEmail("");
-            setPhone("");
             setNotes("");
             setErrors({});
-        } catch {
+        } catch (error) {
             toast.add({
                 title: "Booking failed",
-                description: "Something went wrong. Please try again.",
+                description:
+                    error instanceof Error
+                        ? error.message
+                        : "Something went wrong. Please try again.",
                 type: "error",
             });
         } finally {
@@ -99,6 +128,21 @@ export function BookingForm({ camp }: { camp: Camp }) {
             delete next[key];
             return next;
         });
+    }
+
+    if (!isLoaded) {
+        return <p role="status" className="text-sm text-neutral-500">Checking your account…</p>;
+    }
+
+    if (!isSignedIn) {
+        return (
+            <div className="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
+                <p className="text-sm text-neutral-600 dark:text-neutral-300">Sign in to reserve a camp slot.</p>
+                <Link href="/sign-in" className="mt-4 inline-flex">
+                    <Button>Sign in to book</Button>
+                </Link>
+            </div>
+        );
     }
 
     return (
@@ -172,13 +216,11 @@ export function BookingForm({ camp }: { camp: Camp }) {
                         label="Email"
                         type="email"
                         value={email}
-                        onChange={(v) => {
-                            setEmail(v);
-                            clearError("email");
-                        }}
+                        onChange={setEmail}
                         placeholder="you@example.com"
                         required
                         error={errors.email}
+                        disabled
                     />
                     <Field
                         label="Phone"

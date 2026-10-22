@@ -96,17 +96,28 @@ export const Navigation = () => {
                 <Link
                     href="/profile"
                     aria-label="Account"
-                    className="relative group grid place-items-center w-10 h-10 rounded-full overflow-hidden cursor-pointer transition-colors duration-200 hover:text-theme focus-visible:text-theme focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme/50"
+                    className="relative group flex flex-col items-center gap-1.5 cursor-pointer transition-colors duration-200 hover:text-theme focus-visible:text-theme focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme/50"
                 >
-                    {isLoaded && isSignedIn && user ? (
-                        <img
-                            src={user.imageUrl}
-                            alt={user.fullName ?? "Profile"}
-                            className="w-8 h-8 rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                    ) : (
-                        <span className="inline-block transition-transform duration-300 group-hover:scale-110 hover:rotate-360">
-                            <FiUser size={24} />
+                    <span className="grid place-items-center w-10 h-10 rounded-full overflow-hidden">
+                        {isLoaded && isSignedIn && user ? (
+                            <img
+                                src={user.imageUrl}
+                                alt={user.fullName ?? "Profile"}
+                                className="w-8 h-8 rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                        ) : (
+                            <span className="inline-block transition-transform duration-300 group-hover:scale-110 hover:rotate-360">
+                                <FiUser size={24} />
+                            </span>
+                        )}
+                    </span>
+
+                    {isLoaded && isSignedIn && user && (
+                        <span
+                            role="tooltip"
+                            className="pointer-events-none absolute text-foreground left-14 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-hover px-3 py-1.5 text-base font-medium opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 z-50"
+                        >
+                            {user.firstName ?? user.username ?? "Account"}
                         </span>
                     )}
                 </Link>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
+import { UserSync } from "@/components/auth/user-sync";
 import { Footer } from "@/components/footer";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <html lang="en" className={cn("font-sans", inter.variable)}>
                 <body className="min-h-dvh flex flex-col">
                     <Navigation />
+                    <UserSync />
                     {children}
                     <Toaster />
                     <Footer />

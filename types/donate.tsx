@@ -44,4 +44,5 @@ export type Camp = {
     slotsTotal: number;
     slotsLeft: number;
     needs: string[];
+    isPast?: boolean;
 };

@@ -1,10 +1,9 @@
+import "server-only";
 import { Pool } from "@neondatabase/serverless";
 
 const connectionString = process.env.NEXT_PUBLIC_NEON_CONNECTION_STRING;
 if (!connectionString) {
-    throw new Error(
-        "NEXT_PUBLIC_NEON_CONNECTION_STRING environment variable is not set",
-    );
+    throw new Error("NEON_CONNECTION_STRING environment variable is not set");
 }
 
 const pool: Pool = new Pool({
@@ -13,4 +12,3 @@ const pool: Pool = new Pool({
 });
 
 export default pool;
-

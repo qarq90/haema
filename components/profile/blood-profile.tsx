@@ -28,15 +28,23 @@ export function BloodProfileForm({
     const [data, setData] = useState<BloodProfile>({ ...EMPTY, ...initial });
     const [saving, setSaving] = useState(false);
     const [consent, setConsent] = useState(false);
+    const [saveError, setSaveError] = useState<string | null>(null);
 
     const update = (key: keyof BloodProfile, value: string) =>
         setData((d) => ({ ...d, [key]: value }));
 
     const handleSave = async () => {
         setSaving(true);
+        setSaveError(null);
         try {
             await onSave?.(data);
             setEditing(false);
+        } catch (error) {
+            setSaveError(
+                error instanceof Error
+                    ? error.message
+                    : "Could not save your blood profile. Please try again.",
+            );
         } finally {
             setSaving(false);
         }
@@ -83,6 +91,12 @@ export function BloodProfileForm({
                     </div>
                 )}
             </div>
+
+            {saveError && (
+                <p role="alert" className="mt-4 text-sm text-destructive">
+                    {saveError}
+                </p>
+            )}
 
             <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 <Field

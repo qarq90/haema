@@ -52,10 +52,10 @@ export function CampSummary({ camp }: { camp: Camp }) {
             </div>
 
             <Link
-                href={`/camps/${camp.id}`}
+                href="/camps"
                 className="mt-4 inline-block text-xs font-semibold text-red-500 hover:underline"
             >
-                Back to camp details
+                Back to camps
             </Link>
         </aside>
     );

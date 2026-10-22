@@ -22,7 +22,7 @@ export default function Client() {
 
     return (
         <>
-            {showGreeting && (
+            {/* {showGreeting && (
                 <div
                     className={`
                         w-dvw h-dvh
@@ -34,7 +34,7 @@ export default function Client() {
                 >
                     <LandingGreeting durationScale={0.5} />
                 </div>
-            )}
+            )} */}
             <Hero />
             <BloodTypes />
             <CurrentlyLive />
