@@ -30,7 +30,7 @@ export function CampCard({ camp }: { camp: Camp }) {
                 </Row>
             </div>
 
-            <div className="mt-auto flex items-center justify-between">
+            <div className="mt-auto flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <span
                     className={`text-xs font-semibold uppercase tracking-wide ${
                         past || full

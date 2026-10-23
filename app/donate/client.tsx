@@ -47,13 +47,13 @@ export default function Client() {
 
     return (
         <main className="min-h-screen">
-            <section className="pt-24 sm:px-10 lg:pt-20 max-w-7xl">
+            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Donate
                 </h1>
             </section>
 
-            <section className="mx-auto w-full flex flex-row gap-8 px-3 pt-12">
+            <section className="mx-auto flex w-full flex-col gap-8 px-3 pt-8 sm:px-6 sm:pt-12">
                 {stage === "intro" && <Intro onStart={handleStart} />}
 
                 {stage === "quiz" && (
@@ -71,11 +71,11 @@ export default function Client() {
                 )}
             </section>
 
-            <section className="lg:pt-20 px-8">
-                <h1 className="text-4xl py-4 font-bold tracking-tight sm:text-5xl lg:text-7xl">
+            <section className="px-4 pt-12 sm:px-8 lg:pt-20">
+                <h2 className="py-4 text-3xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Camps
-                </h1>
-                <p className="text-sm text-neutral-500 py-4">
+                </h2>
+                <p className="py-2 text-sm text-neutral-500 sm:py-4">
                     Used to match you with the right donation slots.
                 </p>
                 <Camps />

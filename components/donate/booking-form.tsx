@@ -152,7 +152,7 @@ export function BookingForm({ camp }: { camp: Camp }) {
             className="flex flex-col gap-8"
         >
             <div
-                className={`rounded-xl border p-6 transition ${
+                className={`rounded-xl border p-4 transition sm:p-6 ${
                     errors.slot
                         ? "border-red-500/60"
                         : "border-neutral-200 dark:border-neutral-800"
@@ -195,7 +195,7 @@ export function BookingForm({ camp }: { camp: Camp }) {
                 )}
             </div>
 
-            <div className="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
+            <div className="rounded-xl border border-neutral-200 p-4 dark:border-neutral-800 sm:p-6">
                 <h2 className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
                     Your details
                 </h2>
@@ -256,13 +256,13 @@ export function BookingForm({ camp }: { camp: Camp }) {
                 </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center">
                 <p className="text-xs text-neutral-500">
                     {slot
                         ? `Selected: ${slot} – ${addMinutes(slot, 30)}`
                         : "Pick a time to continue"}
                 </p>
-                <Button type="submit" disabled={!canSubmit}>
+                <Button type="submit" disabled={!canSubmit} className="w-full sm:w-auto">
                     {submitting ? (
                         <>
                             <LuLoaderCircle className="mr-2 h-4 w-4 animate-spin" />

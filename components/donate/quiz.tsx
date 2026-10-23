@@ -30,7 +30,7 @@ export default function Quiz({
             : (current.options ?? []);
 
     return (
-        <div className="flex w-full flex-col gap-4 px-8">
+        <div className="flex w-full flex-col gap-4 px-0 sm:px-4 md:px-8">
             <ProgressBar step={step} total={total} />
 
             <div className="transition-all duration-300">
@@ -51,6 +51,7 @@ export default function Quiz({
                 <div className="mt-8 grid w-full grid-cols-2 gap-3">
                     {options.map((opt) => (
                         <button
+                            type="button"
                             key={String(opt.value)}
                             onClick={() => onAnswer(opt.value)}
                             className="group flex items-center justify-center rounded-xl border border-foreground/10 px-5 py-4 text-left transition-all duration-300 hover:border-theme/40 hover:bg-theme/15"
