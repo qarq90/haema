@@ -72,6 +72,30 @@ export default function Client() {
             </section>
 
             <section className="px-4 pt-12 sm:px-8 lg:pt-20">
+                <div className="mb-6 max-w-2xl">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">
+                        What happens next
+                    </p>
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+                        A simple path to donation
+                    </h2>
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    {[
+                        { step: "01", title: "Check eligibility", detail: "Answer a few screening questions before choosing a camp." },
+                        { step: "02", title: "Choose a camp", detail: "Find an upcoming donation camp that works for you." },
+                        { step: "03", title: "Meet the medical team", detail: "Staff confirm your eligibility before your donation." },
+                    ].map(({ step, title, detail }) => (
+                        <div key={step} className="rounded-xl border border-foreground/10 p-5 sm:p-6">
+                            <span className="text-xs font-mono font-semibold text-theme">{step}</span>
+                            <h3 className="mt-3 font-semibold">{title}</h3>
+                            <p className="mt-2 text-sm leading-6 text-foreground/60">{detail}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <section className="px-4 pt-12 sm:px-8 lg:pt-20">
                 <h2 className="py-4 text-3xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Camps
                 </h2>

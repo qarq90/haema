@@ -17,6 +17,11 @@ export function Camps() {
     const [query, setQuery] = useState("");
 
     useEffect(() => {
+        const requestedBloodType = new URLSearchParams(window.location.search).get("bloodType");
+        if (requestedBloodType && BLOOD_TYPES.includes(requestedBloodType)) {
+            setBloodType(requestedBloodType);
+        }
+
         let cancelled = false;
 
         const loadCamps = async () => {
@@ -53,6 +58,7 @@ export function Camps() {
         const q = query.trim().toLowerCase();
 
         return camps.filter((camp) => {
+            if (camp.isPast) return false;
             if (city !== ALL_CITIES && camp.city !== city) return false;
 
             if (bloodType !== ANY_BLOOD_TYPE) {
@@ -76,6 +82,10 @@ export function Camps() {
         });
     }, [camps, city, bloodType, query]);
     const cityOptions = [ALL_CITIES, ...new Set(camps.map((camp) => camp.city))];
+    const slotsRemaining = filteredCamps.reduce(
+        (total, camp) => total + camp.slotsLeft,
+        0,
+    );
 
     return (
         <div className="flex flex-col w-full">
@@ -115,6 +125,19 @@ export function Camps() {
             </section>
 
             <section className="mx-auto w-full pb-24 pt-8">
+                {!loading && !loadError && (
+                    <div className="mb-5 flex flex-col gap-3 rounded-xl border border-foreground/10 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+                        <div>
+                            <p className="font-semibold">Upcoming donation camps</p>
+                            <p className="mt-1 text-sm text-neutral-500">
+                                {filteredCamps.length} {filteredCamps.length === 1 ? "camp" : "camps"} match your search
+                            </p>
+                        </div>
+                        <p className="text-sm text-neutral-500">
+                            <span className="font-semibold text-foreground">{slotsRemaining}</span> booking slots remaining
+                        </p>
+                    </div>
+                )}
                 {loading ? (
                     <div className="rounded-xl border border-dashed border-neutral-200 py-16 text-center dark:border-neutral-800">
                         <p role="status" className="text-sm font-medium text-neutral-500">Loading camps…</p>
