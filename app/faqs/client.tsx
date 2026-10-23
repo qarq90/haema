@@ -5,13 +5,16 @@ import { sections } from "@/lib/faqs";
 export default function Client() {
     return (
         <main className="min-h-screen">
-            <section className="pt-24 sm:px-10 lg:pt-20 max-w-7xl">
+            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Frequently Asked Questions
                 </h1>
+                <nav aria-label="FAQ sections" className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
+                    {sections.map((section) => <a key={section.id} href={`#${section.id}`} className="shrink-0 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/75">{section.title}</a>)}
+                </nav>
             </section>
 
-            <div className="mx-auto px-6 sm:px-8 lg:px-10 lg:pt-12">
+            <div className="mx-auto px-4 pt-6 sm:px-8 lg:px-10 lg:pt-12">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-[240px_minmax(0,1fr)] z-50">
                     <aside className="hidden lg:block">
                         <div className="sticky top-14">
@@ -39,7 +42,7 @@ export default function Client() {
                         </div>
                     </aside>
 
-                    <article className="min-w-0 rounded-2xl px-6 shadow-sm sm:px-10 lg:px-12">
+                    <article className="min-w-0 rounded-2xl px-0 shadow-sm sm:px-10 lg:px-12">
                         {sections.map((section) => (
                             <section
                                 key={section.id}
@@ -64,7 +67,7 @@ export default function Client() {
                                                             key={index}
                                                             className="group"
                                                         >
-                                                            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-base font-semibold text-foreground/75 transition hover:text-foreground [&::-webkit-details-marker]:hidden">
+                                                            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-sm font-semibold text-foreground/75 transition hover:text-foreground sm:gap-6 sm:py-6 sm:text-base [&::-webkit-details-marker]:hidden">
                                                                 <span>
                                                                     {
                                                                         faq.question
@@ -76,7 +79,7 @@ export default function Client() {
                                                                 </span>
                                                             </summary>
 
-                                                            <div className="pb-6 pr-8 text-sm leading-7 text-foreground/75">
+                                                            <div className="pb-6 pr-4 text-sm leading-7 text-foreground/75 sm:pr-8">
                                                                 {faq.answer}
                                                             </div>
                                                         </details>

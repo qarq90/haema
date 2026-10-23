@@ -2,7 +2,7 @@ import Client from "./client";
 
 export default function FAQs() {
     return (
-        <main className="flex flex-col py-4 h-full max-w-[calc(100dvw-0%)] mx-64">
+        <main className="mx-0 flex h-full flex-col px-4 py-4 md:mx-64 md:max-w-[calc(100dvw-0%)] md:px-0">
             <Client />
         </main>
     );

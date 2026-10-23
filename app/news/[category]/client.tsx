@@ -55,23 +55,31 @@ export default function Client() {
 
     return (
         <main className="min-h-screen">
-            <section className="pt-24 sm:px-10 lg:pt-20 max-w-7xl">
-                <div className="flex flex-row items-center gap-4">
+            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
+                <div className="flex items-center gap-3 sm:gap-4">
                     <Link
                         href="/news"
                         aria-label="Back to news"
-                        className="group flex h-16 w-16 items-center justify-center rounded-full bg-theme text-white transition hover:bg-theme hover:text-white"
+                        className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-theme text-white transition hover:bg-theme hover:text-white sm:h-16 sm:w-16"
                     >
-                        <LuArrowLeft size={28} />
+                        <LuArrowLeft size={24} className="sm:hidden" />
+                        <LuArrowLeft size={28} className="hidden sm:block" />
                     </Link>
 
-                    <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                    <h1 className="min-w-0 break-words text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                         {categoryLabel}
                     </h1>
                 </div>
+                <nav aria-label="News categories" className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
+                    {categories.map((cat) => (
+                        <Link key={cat.slug} href={`/news/${cat.slug}`} aria-current={cat.slug === slug ? "page" : undefined} className={`shrink-0 rounded-full border px-4 py-2 text-sm ${cat.slug === slug ? "border-theme bg-theme text-white" : "border-foreground/10 text-foreground/75"}`}>
+                            {cat.label}
+                        </Link>
+                    ))}
+                </nav>
             </section>
 
-            <div className="mx-auto px-6 sm:px-8 lg:px-10 lg:pt-12">
+            <div className="mx-auto px-4 pt-6 sm:px-8 lg:px-10 lg:pt-12">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-[240px_minmax(0,1fr)] z-50">
                     <aside className="hidden lg:block">
                         <div className="sticky top-14">

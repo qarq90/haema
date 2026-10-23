@@ -16,22 +16,22 @@ export default function Client() {
 
     return (
         <main className="min-h-screen">
-            <section className="pt-24 sm:px-10 lg:pt-20 max-w-7xl">
+            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Need help?
                     <br />
                     <span className="text-red-500">We're here.</span>
                 </h1>
 
-                <p className="mt-8 max-w-2xl text-lg leading-8 text-foreground/75">
+                <p className="mt-6 max-w-2xl text-base leading-7 text-foreground/75 sm:mt-8 sm:text-lg sm:leading-8">
                     Have a question about blood donation, blood requests, your
                     account, or the HAEMA platform? Send us a message and we'll
                     help you find the right information.
                 </p>
             </section>
 
-            <section className="mx-auto pt-12 px-6 sm:px-10 lg:px-16 lg:pt-20">
-                <div className="grid grid-cols-1 gap-20 lg:grid-cols-[0.8fr_1.2fr]">
+            <section className="mx-auto px-4 pt-10 sm:px-10 lg:px-16 lg:pt-20">
+                <div className="grid grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
                     <div>
                         <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-foreground/40">
                             How can we help?
@@ -218,14 +218,14 @@ export default function Client() {
                 </div>
             </section>
 
-            <section className="border-t border-foreground/10 px-6 py-20 sm:px-10 lg:px-16">
+            <section className="border-t border-foreground/10 px-4 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
                 <div className="flex flex-col gap-8">
                     <div>
                         <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-500">
                             Before contacting us
                         </p>
 
-                        <h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
+                        <h2 className="mt-4 max-w-2xl text-2xl font-bold tracking-tight sm:text-4xl">
                             You might find the answer
                             <br />
                             in our FAQs.

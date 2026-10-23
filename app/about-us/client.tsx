@@ -5,13 +5,16 @@ import { sections } from "@/lib/about-us";
 export default function Client() {
     return (
         <main className="min-h-screen">
-            <section className="pt-24 sm:px-10 lg:pt-20 max-w-7xl">
+            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     About Us
                 </h1>
+                <nav aria-label="About sections" className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
+                    {sections.map((section) => <a key={section.id} href={`#${section.id}`} className="shrink-0 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/75">{section.title}</a>)}
+                </nav>
             </section>
 
-            <div className="mx-auto px-6 sm:px-8 lg:px-10 lg:pt-12">
+            <div className="mx-auto px-4 pt-6 sm:px-8 lg:px-10 lg:pt-12">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-[240px_minmax(0,1fr)] z-50">
                     <aside className="hidden lg:block">
                         <div className="sticky top-14">
@@ -39,7 +42,7 @@ export default function Client() {
                         </div>
                     </aside>
 
-                    <article className="min-w-0 rounded-2xl px-6 shadow-sm sm:px-10 lg:px-12">
+                    <article className="min-w-0 rounded-2xl px-0 shadow-sm sm:px-10 lg:px-12">
                         <div className="border-b border-foreground/10 my-2 pb-4">
                             <p className="text-lg leading-8 text-foreground/75">
                                 We are a technology platform built to connect
@@ -337,7 +340,7 @@ export default function Client() {
                             </p>
 
                             <ul className="list-disc space-y-2 pl-6">
-                                <li className="flex flex-row gap-2">
+                                <li className="flex flex-col gap-1 sm:flex-row sm:gap-2">
                                     <strong>General enquiries:</strong>{" "}
                                     <a
                                         href="mailto:rahman.242466.it@mhssce.ac.in"
@@ -346,13 +349,13 @@ export default function Client() {
                                         rahman.242466.it@mhssce.ac.in
                                     </a>
                                 </li>
-                                <li className="flex flex-row gap-2">
+                                <li className="flex flex-col gap-1 sm:flex-row sm:gap-2">
                                     <strong>Project guide / Faculty:</strong>{" "}
                                     <p className="text-red-500 hover:underline">
                                         Swati Ganar Gurav
                                     </p>
                                 </li>
-                                <li className="flex flex-row gap-2">
+                                <li className="flex flex-col gap-1 sm:flex-row sm:gap-2">
                                     <strong>Technical support:</strong>{" "}
                                     <a
                                         href="mailto:rahman.242466.it@mhssce.ac.in"
@@ -361,7 +364,7 @@ export default function Client() {
                                         rahman.242466.it@mhssce.ac.in
                                     </a>
                                 </li>
-                                <li className="flex flex-row gap-2">
+                                <li className="flex flex-col gap-1 sm:flex-row sm:gap-2">
                                     <strong>Report an issue:</strong> Use the
                                     in-app report feature or reach out via the
                                     support email above.

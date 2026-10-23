@@ -227,7 +227,7 @@ export const Navigation = () => {
                     <Link
                         href="/profile"
                         aria-label="Account"
-                        className="relative group flex flex-col items-center gap-1.5 cursor-pointer transition-colors duration-200 hover:text-theme focus-visible:text-theme focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme/50"
+                        className="relative group flex flex-col items-center gap-1.5 cursor-pointer overflow-y-hidden transition-colors duration-200 hover:text-theme focus-visible:text-theme focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-theme/50"
                     >
                         <span className="grid place-items-center w-10 h-10 rounded-full overflow-hidden">
                             {isLoaded && isSignedIn && user ? (
