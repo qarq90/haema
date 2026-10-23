@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import android_hand from "../../public/imgs/android_hand.png";
@@ -7,11 +6,9 @@ import { SignInButton } from "@clerk/nextjs";
 
 export const Hero = () => {
     return (
-        <section className="w-full h-dvh flex flex-row gap-32 items-center -mt-12">
-            <div className="h-full w-3/5 shrink-0 flex flex-col justify-around">
-                <p></p>
-                <p></p>
-                <p className="text-8xl leading-32 relative w-full">
+        <section className="-mt-12 flex min-h-dvh w-full flex-col items-center gap-4 pt-32 px-10 pb-8 md:h-dvh md:min-h-0 md:flex-row md:gap-32 md:pt-0 md:pb-0">
+            <div className="flex w-full shrink-0 flex-col gap-8 md:h-full md:w-3/5 md:justify-around md:gap-0">
+                <h1 className="relative w-full text-4xl leading-tight sm:text-6xl md:text-8xl md:leading-32">
                     <span>
                         Today{" "}
                         <span className="uppercase text-theme font-bold">
@@ -27,9 +24,9 @@ export const Hero = () => {
                         </span>{" "}
                         back.
                     </span>
-                </p>
+                </h1>
 
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-wrap gap-3 md:flex-row md:gap-4">
                     <SignInButton mode="redirect">
                         <Button>Register Now</Button>
                     </SignInButton>
@@ -56,7 +53,7 @@ export const Hero = () => {
                 <p></p>
             </div>
 
-            <div className="h-full w-2/5 shrink-0 flex items-center scale-x-[-1] justify-center -ml-16">
+            <div className="relative h-[32vh] min-h-56 w-full shrink-0 scale-x-[-1] md:ml-[-4rem] md:flex md:h-full md:w-2/5 md:items-center md:justify-center">
                 <div className="relative h-full w-full rounded-lg">
                     <Image
                         src={android_hand}

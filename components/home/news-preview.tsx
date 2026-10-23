@@ -16,14 +16,14 @@ export const NewsPreview = () => {
     }, []);
 
     return (
-        <section className="w-full flex flex-col gap-y-12 items-center py-20">
+        <section className="flex w-full flex-col items-center gap-y-8 py-12 sm:gap-y-10 sm:py-16 md:gap-y-12 md:py-20">
             <div className="flex flex-col items-center gap-y-3 text-center">
-                <p className="text-8xl leading-tight">
+                <h2 className="text-4xl leading-tight sm:text-6xl md:text-8xl">
                     From our{" "}
                     <span className="uppercase text-theme font-bold">
                         newsroom
                     </span>
-                </p>
+                </h2>
                 <p className="max-w-2xl text-foreground/60">
                     Health tips, donor stories, and updates from the Haema
                     community.

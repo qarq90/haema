@@ -10,11 +10,9 @@ export const Footer = () => {
     if (pathname.includes("/sign-in")) return;
 
     return (
-        <footer className="w-full flex flex-col px-6 md:px-18 lg:px-28 xl:px-40 pt-20 pb-16">
-            <section className="flex flex-row gap-12 justify-between lg:gap-32 py-8 items-start">
-                <div></div>
-
-                <div className="flex flex-col gap-4">
+        <footer className="flex w-full flex-col px-6 pt-12 pb-10 sm:px-8 md:px-18 md:pt-20 md:pb-16 lg:px-28 xl:px-40">
+            <section className="grid grid-cols-2 items-start gap-x-6 gap-y-10 py-8 sm:gap-x-10 md:grid-cols-4 md:gap-12 lg:gap-20">
+                <div className="col-span-2 flex flex-col gap-4 md:col-span-1">
                     <Link
                         href="/"
                         className="w-fit text-2xl font-bold uppercase tracking-tight"
@@ -24,7 +22,7 @@ export const Footer = () => {
                         <span className="lowercase text-4xl">α</span>
                     </Link>
 
-                    <p className="mt-6 max-w-sm text-sm leading-6 text-foreground/75">
+                    <p className="mt-2 max-w-sm text-sm leading-6 text-foreground/75 md:mt-6">
                         Every drop tells a story. We connect donors, patients,
                         and hospitals so no one waits for the blood that could
                         save them.
@@ -57,10 +55,10 @@ export const Footer = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3 md:gap-4">
                     <p className="text-base font-bold">Quick Links</p>
 
-                    <nav className="mt-6 flex flex-col items-start gap-2">
+                    <nav className="mt-2 flex flex-col items-start gap-2 md:mt-6">
                         {quickLinks.map((link) => (
                             <Link
                                 key={link.label}
@@ -77,10 +75,10 @@ export const Footer = () => {
                     </nav>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3 md:gap-4">
                     <p className="text-base font-bold">Support</p>
 
-                    <nav className="mt-6 flex flex-col items-start gap-2">
+                    <nav className="mt-2 flex flex-col items-start gap-2 md:mt-6">
                         {supportLinks.map((link) => (
                             <Link
                                 key={link.label}
@@ -97,7 +95,7 @@ export const Footer = () => {
                     </nav>
                 </div>
 
-                <div className="relative mx-auto aspect-square w-full max-w-[280px] shrink-0 lg:mx-0 -mt-28 scale-125">
+                <div className="relative col-span-2 mx-auto mt-0 aspect-square w-full max-w-[220px] shrink-0 sm:max-w-[240px] md:col-span-1 md:mx-0 md:mt-[-4rem] md:max-w-[280px] md:scale-110 lg:mt-[-7rem]">
                     <Image
                         src={hands_cupped}
                         alt="Blood donation illustration"
@@ -107,15 +105,14 @@ export const Footer = () => {
                     />
                 </div>
 
-                <div></div>
             </section>
 
             <div
-                className="my-16 h-px w-full bg-foreground/10"
+                className="my-8 h-px w-full bg-foreground/10 md:my-16"
                 aria-hidden="true"
             />
 
-            <section className="flex flex-row gap-12 justify-between lg:gap-32 py-8 items-start text-sm text-foreground/50 md:flex-row md:items-center md:justify-between py-8">
+            <section className="flex flex-col items-center justify-between gap-4 py-4 text-center text-sm text-foreground/50 md:flex-row md:gap-12 md:py-8 md:text-left lg:gap-32">
                 <p>© {new Date().getFullYear()} HAEMA. All rights reserved.</p>
 
                 <div className="flex items-center gap-4">
