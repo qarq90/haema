@@ -5,8 +5,18 @@ import { Section } from "@/components/common/section";
 import { CategoryPreview } from "@/components/news/catergory-preview";
 import { FeaturedStory } from "@/components/news/featured";
 import { LatestArticles } from "@/components/news/latest";
+import { ArticleCard } from "@/components/news/article";
+import { articles } from "@/lib/news";
+import { useMemo, useState } from "react";
 
 export default function Client() {
+    const [query, setQuery] = useState("");
+    const matches = useMemo(() => {
+        const normalized = query.trim().toLowerCase();
+        if (!normalized) return [];
+        return articles.filter((article) => `${article.title} ${article.excerpt} ${article.category}`.toLowerCase().includes(normalized)).slice(0, 8);
+    }, [query]);
+
     return (
         <main className="min-h-screen">
             <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
@@ -20,6 +30,11 @@ export default function Client() {
                         </Link>
                     ))}
                 </nav>
+            </section>
+
+            <section className="mx-auto max-w-7xl px-4 pt-8 sm:px-10">
+                <label className="block text-sm font-semibold">Search articles<input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search health tips, myths, donor stories…" className="mt-2 w-full rounded-lg border border-foreground/15 bg-transparent px-4 py-3 font-normal outline-none focus:border-theme/50" /></label>
+                {query && <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">{matches.length > 0 ? matches.map((article) => <ArticleCard key={article.id} article={article} />) : <p className="text-sm text-foreground/55">No articles found.</p>}</div>}
             </section>
 
             <div className="mx-auto px-4 pt-6 sm:px-8 lg:px-10 lg:pt-12">

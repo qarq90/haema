@@ -1,4 +1,7 @@
-import { formatDate } from "@/lib/utils";
+"use client";
+
+import { formatDate } from "@/functions/utils";
+import { downloadCampCalendarEvent } from "@/functions/calendar";
 import Link from "next/link";
 import { LuMapPin, LuCalendar, LuClock, LuDroplet } from "react-icons/lu";
 import { Button } from "../ui/button";
@@ -50,9 +53,12 @@ export function CampCard({ camp }: { camp: Camp }) {
                 {past || full ? (
                     <Button disabled>{past ? "Past" : "Full"}</Button>
                 ) : (
-                    <Link href={`/camps/${encodeURIComponent(camp.id)}/book`}>
-                        <Button>Book a Slot</Button>
-                    </Link>
+                    <div className="flex flex-wrap gap-2">
+                        <Link href={`/camps/${encodeURIComponent(camp.id)}/book`}>
+                            <Button>Book a Slot</Button>
+                        </Link>
+                        <Button type="button" variant="secondary" onClick={() => downloadCampCalendarEvent(camp)}>Calendar</Button>
+                    </div>
                 )}
             </div>
         </div>

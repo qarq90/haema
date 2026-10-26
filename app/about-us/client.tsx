@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { Section } from "@/components/common/section";
 import { sections } from "@/lib/about-us";
 
@@ -9,8 +9,19 @@ export default function Client() {
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     About Us
                 </h1>
-                <nav aria-label="About sections" className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
-                    {sections.map((section) => <a key={section.id} href={`#${section.id}`} className="shrink-0 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/75">{section.title}</a>)}
+                <nav
+                    aria-label="About sections"
+                    className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden"
+                >
+                    {sections.map((section) => (
+                        <a
+                            key={section.id}
+                            href={`#${section.id}`}
+                            className="shrink-0 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/75"
+                        >
+                            {section.title}
+                        </a>
+                    ))}
                 </nav>
             </section>
 
@@ -57,11 +68,11 @@ export default function Client() {
                         <Section id="mission" number="01" title="Our Mission">
                             <p>
                                 Every day, patients across the country need
-                                blood that is for surgeries, accidents, childbirth,
-                                cancer treatment, and chronic conditions. Yet
-                                finding a matching donor or a stocked blood bank
-                                in time often depends on phone calls, WhatsApp
-                                forwards, and luck.
+                                blood that is for surgeries, accidents,
+                                childbirth, cancer treatment, and chronic
+                                conditions. Yet finding a matching donor or a
+                                stocked blood bank in time often depends on
+                                phone calls, WhatsApp forwards, and luck.
                             </p>
 
                             <p>
@@ -88,11 +99,11 @@ export default function Client() {
                             </p>
 
                             <p>
-                                The answer was not a lack of donors that is it was a
-                                lack of coordination. Donors had no easy way to
-                                be discovered. Blood banks had no shared view of
-                                stock. Patients had no reliable way to reach
-                                either.
+                                The answer was not a lack of donors that is it
+                                was a lack of coordination. Donors had no easy
+                                way to be discovered. Blood banks had no shared
+                                view of stock. Patients had no reliable way to
+                                reach either.
                             </p>
 
                             <p>
@@ -128,8 +139,8 @@ export default function Client() {
 
                             <p>
                                 We do not replace hospitals, blood banks, or
-                                medical professionals. We connect them that is and the
-                                people who depend on them.
+                                medical professionals. We connect them that is
+                                and the people who depend on them.
                             </p>
                         </Section>
 
@@ -148,10 +159,10 @@ export default function Client() {
 
                             <p>
                                 For patients and families, the process starts
-                                with a blood request that is filtered by blood group,
-                                city, and quantity. Contact details stay hidden
-                                until a donor or blood bank accepts the request,
-                                protecting everyone&apos;s privacy.
+                                with a blood request that is filtered by blood
+                                group, city, and quantity. Contact details stay
+                                hidden until a donor or blood bank accepts the
+                                request, protecting everyone&apos;s privacy.
                             </p>
 
                             <p>
@@ -238,7 +249,8 @@ export default function Client() {
                             <p>
                                 We work closely with hospitals, blood banks, and
                                 camp organizers to make sure the platform
-                                reflects real-world workflows that is not just theory.
+                                reflects real-world workflows that is not just
+                                theory.
                             </p>
 
                             <p>
@@ -263,8 +275,8 @@ export default function Client() {
                             <p>
                                 Partners get access to a dedicated dashboard for
                                 managing stock, requests, donor history, and
-                                camp participation that is along with reports and
-                                analytics.
+                                camp participation that is along with reports
+                                and analytics.
                             </p>
 
                             <p>
@@ -283,8 +295,8 @@ export default function Client() {
                             <ul className="list-disc space-y-2 pl-6">
                                 <li>
                                     <strong>Life First:</strong> Every decision
-                                    we make is measured against one question that is
-                                    does this help save a life faster?
+                                    we make is measured against one question
+                                    that is does this help save a life faster?
                                 </li>
                                 <li>
                                     <strong>Privacy by Default:</strong> Contact
@@ -327,8 +339,8 @@ export default function Client() {
                             </ul>
 
                             <p>
-                                We ship in small, careful steps that is always with
-                                privacy, accuracy, and lives at the center.
+                                We ship in small, careful steps that is always
+                                with privacy, accuracy, and lives at the center.
                             </p>
                         </Section>
 

@@ -186,8 +186,9 @@ export const Navigation = () => {
                 className="fixed top-16 left-0 z-50 hidden h-dvh w-32 flex-col items-center pt-8 pb-10 md:flex"
             >
                 <p className="text-xl font-bold uppercase mb-10 overflow-hidden">
-                    H<span className="lowercase text-3xl">α</span>EM
-                    <span className="lowercase text-3xl">α</span>
+                    H<span className="lowercase text-3xl">α</span>
+                    {/* EM */}
+                    {/* <span className="lowercase text-3xl">α</span> */}
                 </p>
 
                 <ul className="flex flex-col items-center gap-8 overflow-hidden">

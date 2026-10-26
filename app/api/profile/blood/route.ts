@@ -49,7 +49,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function optionalString(value: unknown, maxLength: number): string | null {
     if (value === "" || value === null || value === undefined) return null;
     if (typeof value !== "string" || value.trim().length > maxLength) {
-        throw new ProfileValidationError("One or more profile fields are invalid.");
+        throw new ProfileValidationError(
+            "One or more profile fields are invalid.",
+        );
     }
     return value.trim();
 }
@@ -61,7 +63,10 @@ function optionalDate(value: unknown): string | null {
         throw new ProfileValidationError("Dates must use YYYY-MM-DD format.");
     }
     const parsed = new Date(`${date}T00:00:00.000Z`);
-    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date) {
+    if (
+        Number.isNaN(parsed.getTime()) ||
+        parsed.toISOString().slice(0, 10) !== date
+    ) {
         throw new ProfileValidationError("Please provide a valid date.");
     }
     return date;
@@ -75,7 +80,9 @@ function optionalMeasurement(
     if (value === "" || value === null || value === undefined) return null;
     const number = typeof value === "number" ? value : Number(value);
     if (!Number.isInteger(number) || number < min || number > max) {
-        throw new ProfileValidationError(`Measurements must be between ${min} and ${max}.`);
+        throw new ProfileValidationError(
+            `Measurements must be between ${min} and ${max}.`,
+        );
     }
     return number;
 }
@@ -84,7 +91,12 @@ function selectionArray(value: unknown, allowed: readonly string[]): string[] {
     if (!Array.isArray(value) || value.length > allowed.length) {
         throw new ProfileValidationError("One or more selections are invalid.");
     }
-    if (!value.every((item): item is string => typeof item === "string" && allowed.includes(item))) {
+    if (
+        !value.every(
+            (item): item is string =>
+                typeof item === "string" && allowed.includes(item),
+        )
+    ) {
         throw new ProfileValidationError("One or more selections are invalid.");
     }
     return [...new Set(value)];
@@ -96,9 +108,13 @@ function toProfile(row: Record<string, unknown> | undefined) {
         bloodType: row.bloodType ?? "",
         heightCm: row.heightCm === null ? "" : String(row.heightCm ?? ""),
         weightKg: row.weightKg === null ? "" : String(row.weightKg ?? ""),
-        dateOfBirth: row.dateOfBirth ? String(row.dateOfBirth).slice(0, 10) : "",
+        dateOfBirth: row.dateOfBirth
+            ? String(row.dateOfBirth).slice(0, 10)
+            : "",
         gender: row.gender ?? "",
-        lastDonation: row.lastDonation ? String(row.lastDonation).slice(0, 10) : "",
+        lastDonation: row.lastDonation
+            ? String(row.lastDonation).slice(0, 10)
+            : "",
         chronicConditions: row.chronicConditions ?? [],
         medications: row.medications ?? [],
         allergies: row.allergies ?? [],
@@ -136,10 +152,16 @@ export async function POST(request: Request) {
         try {
             body = await request.json();
         } catch {
-            return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+            return NextResponse.json(
+                { error: "Invalid JSON body" },
+                { status: 400 },
+            );
         }
         if (!isRecord(body)) {
-            return NextResponse.json({ error: "Invalid profile data" }, { status: 400 });
+            return NextResponse.json(
+                { error: "Invalid profile data" },
+                { status: 400 },
+            );
         }
 
         const input: BloodProfileInput = {
@@ -149,15 +171,22 @@ export async function POST(request: Request) {
             dateOfBirth: optionalString(body.dateOfBirth, 10) ?? "",
             gender: optionalString(body.gender, 30) ?? "",
             lastDonation: optionalString(body.lastDonation, 10) ?? "",
-            chronicConditions: selectionArray(body.chronicConditions, ILLNESSES),
+            chronicConditions: selectionArray(
+                body.chronicConditions,
+                ILLNESSES,
+            ),
             medications: selectionArray(body.medications, MEDICATIONS),
             allergies: selectionArray(body.allergies, ALLERGIES),
-            emergencyContactName: optionalString(body.emergencyContactName, 120) ?? "",
-            emergencyContactPhone: optionalString(body.emergencyContactPhone, 40) ?? "",
+            emergencyContactName:
+                optionalString(body.emergencyContactName, 120) ?? "",
+            emergencyContactPhone:
+                optionalString(body.emergencyContactPhone, 40) ?? "",
         };
 
         if (input.bloodType && !BLOOD_TYPES.includes(input.bloodType)) {
-            throw new ProfileValidationError("Please select a valid blood type.");
+            throw new ProfileValidationError(
+                "Please select a valid blood type.",
+            );
         }
         if (input.gender && !GENDERS.includes(input.gender)) {
             throw new ProfileValidationError("Please select a valid gender.");

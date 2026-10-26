@@ -27,7 +27,7 @@ export const Footer = () => {
             so no one waits for the blood that could save them.
           </p>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 overflow-hidden">
             {socials.map(({ icon: Icon, href, label }) => (
               <Link
                 key={label}

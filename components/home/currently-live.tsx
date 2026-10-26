@@ -1,12 +1,24 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import android_transfusion from "../../public/imgs/android_transfusion.png";
 
 export const CurrentlyLive = () => {
-    const stats = [
-        { label: "So far", value: "12,480", sub: "Total Donors" },
-        { label: "So far", value: "8,932", sub: "Requests Fulfilled" },
-        { label: "So far", value: "64", sub: "Camps" },
-    ];
+    const [stats, setStats] = useState([
+        { label: "Live", value: "—", sub: "Total Donors" },
+        { label: "Live", value: "—", sub: "Requests Fulfilled" },
+        { label: "Live", value: "—", sub: "Camps" },
+    ]);
+    const [requests, setRequests] = useState<Array<{ id: string; bloodType: string; units: number; city: string; urgency: string }>>([]);
+    useEffect(() => {
+        void fetch("/api/home").then(async (response) => {
+            if (!response.ok) return;
+            const data: { stats?: { donors: number; fulfilled: number; camps: number }; requests?: typeof requests } = await response.json();
+            if (data.stats) setStats([{ label: "Live", value: String(data.stats.donors), sub: "Total Donors" }, { label: "Live", value: String(data.stats.fulfilled), sub: "Requests Fulfilled" }, { label: "Live", value: String(data.stats.camps), sub: "Camps" }]);
+            setRequests(data.requests ?? []);
+        });
+    }, []);
 
     return (
         <section className="flex w-full flex-col items-center gap-8 py-12 sm:py-16 md:h-[88dvh] md:flex-row-reverse md:gap-32 md:py-0">
@@ -49,6 +61,7 @@ export const CurrentlyLive = () => {
                     />
                 </div>
             </div>
+            {requests.length > 0 && <div className="w-full rounded-xl border border-destructive/20 bg-destructive/5 p-4 text-left"><p className="text-xs font-bold uppercase tracking-widest text-destructive">Pending blood requests</p><div className="mt-3 flex gap-3 overflow-x-auto">{requests.map((request) => <span key={request.id} className="shrink-0 rounded-lg border border-destructive/15 bg-background px-3 py-2 text-sm"><strong>{request.bloodType}</strong> · {request.units} units · {request.city}</span>)}</div></div>}
         </section>
     );
 };

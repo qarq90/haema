@@ -13,9 +13,12 @@ type HospitalNeed = {
     bloodType: string;
     city: string;
     units: number;
-    neededBy: string;
+    neededBy: string | null;
     status: "Pending" | "Approved" | "Fulfilled" | "Rejected";
     createdAt: string;
+    source: "request" | "hospital";
+    patientName: string | null;
+    responseStatus: string | null;
 };
 
 export default function Client() {
@@ -36,6 +39,8 @@ export default function Client() {
     const [submitting, setSubmitting] = useState(false);
     const [formMessage, setFormMessage] = useState<string | null>(null);
     const [formError, setFormError] = useState<string | null>(null);
+    const [respondedRequestId, setRespondedRequestId] = useState<string | null>(null);
+    const [responseError, setResponseError] = useState<string | null>(null);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -109,6 +114,26 @@ export default function Client() {
         setSubmitting(false);
     }
 
+    async function respondToRequest(requestId: string) {
+        setResponseError(null);
+        const response = await fetch(`/api/requests/${requestId}/responses`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({}),
+        }).catch(() => null);
+        if (!response) {
+            setResponseError("Could not reach the server. Please try again.");
+            return;
+        }
+        const result: { error?: string } = await response.json();
+        if (!response.ok) {
+            setResponseError(result.error ?? "Could not send your response.");
+            return;
+        }
+        setRespondedRequestId(requestId);
+        setReloadKey((key) => key + 1);
+    }
+
     return (
         <main className="min-h-screen">
              <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
@@ -120,7 +145,7 @@ export default function Client() {
                 </p>
             </section>
 
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 pt-8 pb-20 sm:px-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.6fr)] lg:gap-8 lg:pt-12">
+            <div className="mx-auto grid grid-cols-1 gap-6 px-4 pt-8 pb-20 sm:px-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.6fr)] lg:gap-8 lg:pt-12">
                 <section>
                     <div className="mb-5 flex flex-col gap-4 rounded-2xl border border-foreground/10 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
                         <div className="flex flex-wrap gap-3">
@@ -184,9 +209,17 @@ export default function Client() {
                                             <p className="text-xs text-foreground/50">{request.units === 1 ? "unit" : "units"} needed</p>
                                         </div>
                                     </div>
-                                    <p className="mt-4 text-sm text-foreground/60">
+                                    {request.patientName && <p className="mt-4 text-sm text-foreground/60">Patient: {request.patientName}</p>}
+                                    {request.neededBy && <p className="mt-4 text-sm text-foreground/60">
                                         Needed by <time dateTime={request.neededBy}>{new Date(`${request.neededBy}T00:00:00`).toLocaleDateString()}</time>
-                                    </p>
+                                    </p>}
+                                    {request.source === "request" && (
+                                        <Button type="button" variant="secondary" className="mt-4 w-full" disabled={Boolean(request.responseStatus)} onClick={() => void respondToRequest(request.id)}>
+                                            {request.responseStatus || respondedRequestId === request.id ? "Response sent" : "I can help"}
+                                        </Button>
+                                    )}
+                                    {respondedRequestId === request.id && <p role="status" className="mt-2 text-sm text-theme">Your response was sent to the requester.</p>}
+                                    {responseError && request.source === "request" && <p role="alert" className="mt-2 text-sm text-destructive">{responseError}</p>}
                                 </article>
                             ))}
                         </div>

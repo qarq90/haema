@@ -14,13 +14,17 @@ export async function GET(request: Request) {
     const city = searchParams.get("city")?.trim() || null;
 
     if (city && city.length > 100) {
-        return NextResponse.json({ error: "City name is too long." }, { status: 400 });
+        return NextResponse.json(
+            { error: "City name is too long." },
+            { status: 400 },
+        );
     }
 
     try {
-        const [inventoryResult, citiesResult, locationResult] = await Promise.all([
-            pool.query<InventoryRow>(
-                `
+        const [inventoryResult, citiesResult, locationResult] =
+            await Promise.all([
+                pool.query<InventoryRow>(
+                    `
                     WITH blood_types("bloodType") AS (
                         SELECT unnest($2::text[])
                     ), stock AS (
@@ -43,25 +47,25 @@ export async function GET(request: Request) {
                     LEFT JOIN stock ON stock."bloodType" = blood_types."bloodType"
                     ORDER BY array_position($2::text[], blood_types."bloodType")
                 `,
-                [city, BLOOD_TYPES],
-            ),
-            pool.query<{ city: string }>(`
+                    [city, BLOOD_TYPES],
+                ),
+                pool.query<{ city: string }>(`
                 SELECT DISTINCT camps.city
                 FROM blood_inventory inventory
                 INNER JOIN camps ON camps.id = inventory.camp_id
                 WHERE camps.city IS NOT NULL AND camps.city <> ''
                 ORDER BY camps.city
             `),
-            pool.query<{ locationCount: number }>(
-                `
+                pool.query<{ locationCount: number }>(
+                    `
                     SELECT COUNT(DISTINCT inventory.camp_id)::integer AS "locationCount"
                     FROM blood_inventory inventory
                     INNER JOIN camps ON camps.id = inventory.camp_id
                     WHERE ($1::text IS NULL OR LOWER(camps.city) = LOWER($1))
                 `,
-                [city],
-            ),
-        ]);
+                    [city],
+                ),
+            ]);
 
         const inventory = inventoryResult.rows.map((row) => ({
             bloodType: row.bloodType,

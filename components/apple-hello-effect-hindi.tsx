@@ -4,7 +4,7 @@ import type { ComponentProps } from "react"
 import type { TargetAndTransition } from "motion/react"
 import { motion } from "motion/react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/functions/utils"
 
 const initialProps: TargetAndTransition = {
   pathLength: 0,

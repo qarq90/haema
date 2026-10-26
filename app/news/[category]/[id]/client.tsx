@@ -3,15 +3,54 @@ import { Article, ArticleCard } from "@/components/news/article";
 import { articles, categories } from "@/lib/news";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { LuArrowLeft } from "react-icons/lu";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { LuArrowLeft, LuBookmark, LuShare2 } from "react-icons/lu";
 
 export default function Client() {
     const params = useParams<{ category: string; id: string }>();
+    const { isLoaded, isSignedIn } = useUser();
+    const [saved, setSaved] = useState(false);
+    const [actionMessage, setActionMessage] = useState<string | null>(null);
     const { category: slug, id } = params;
 
     const article = articles.find(
         (a) => a.id === Number(id) && a.slug === slug,
     );
+
+    useEffect(() => {
+        if (!isLoaded || !isSignedIn || !article) return;
+        void fetch("/api/articles/saved").then(async (response) => {
+            if (!response.ok) return;
+            const data: { articles?: Array<{ articleId: string }> } = await response.json();
+            setSaved((data.articles ?? []).some((entry) => entry.articleId === String(article.id)));
+        });
+    }, [article, isLoaded, isSignedIn]);
+
+    async function toggleSavedArticle() {
+        if (!isSignedIn || !article) {
+            setActionMessage("Sign in to save articles.");
+            return;
+        }
+        const response = saved
+            ? await fetch(`/api/articles/saved?articleId=${article.id}`, { method: "DELETE" })
+            : await fetch("/api/articles/saved", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ articleId: String(article.id) }) });
+        if (!response.ok) {
+            setActionMessage("Could not update your saved articles.");
+            return;
+        }
+        setSaved(!saved);
+        setActionMessage(saved ? "Article removed from saved articles." : "Article saved.");
+    }
+
+    async function shareArticle() {
+        const shareData = { title: article?.title ?? "Haema article", url: window.location.href };
+        if (navigator.share) await navigator.share(shareData).catch(() => undefined);
+        else {
+            await navigator.clipboard.writeText(window.location.href);
+            setActionMessage("Article link copied.");
+        }
+    }
 
     const related =
         article &&
@@ -122,6 +161,11 @@ export default function Client() {
                             <p className="text-lg leading-8 text-foreground/75">
                                 {article.excerpt}
                             </p>
+                            <div className="mt-5 flex flex-wrap gap-3">
+                                <button type="button" onClick={() => void toggleSavedArticle()} className="inline-flex items-center gap-2 rounded-lg border border-foreground/15 px-4 py-2 text-sm font-semibold hover:border-theme/40"><LuBookmark size={16} /> {saved ? "Saved" : "Save article"}</button>
+                                <button type="button" onClick={() => void shareArticle()} className="inline-flex items-center gap-2 rounded-lg border border-foreground/15 px-4 py-2 text-sm font-semibold hover:border-theme/40"><LuShare2 size={16} /> Share</button>
+                            </div>
+                            {actionMessage && <p role="status" className="mt-3 text-sm text-theme">{actionMessage}</p>}
                         </div>
 
                         {(article.content ?? []).map((paragraph, i) => (

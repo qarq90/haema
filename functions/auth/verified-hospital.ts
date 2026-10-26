@@ -20,5 +20,10 @@ export async function getVerifiedHospital() {
         return null;
     }
 
-    return { userId: user.id, hospitalName };
+    return {
+        userId: user.id,
+        hospitalName,
+        contactEmail: user.primaryEmailAddress?.emailAddress ?? null,
+        contactPhone: user.primaryPhoneNumber?.phoneNumber ?? "Not provided",
+    };
 }

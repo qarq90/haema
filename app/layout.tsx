@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { UserSync } from "@/components/auth/user-sync";
 import { Footer } from "@/components/footer";
 import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { cn } from "@/functions/utils";
 import { Toaster } from "@/components/ui/toast";
 import { ClerkProvider } from "@clerk/nextjs";
 

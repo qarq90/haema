@@ -1,14 +1,17 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { BLOOD_TYPES } from "@/constants/profile";
+
 export const BloodTypes = () => {
-    const bloodTypes = [
-        { type: "A+", count: 50 },
-        { type: "A-", count: 42 },
-        { type: "B+", count: 38 },
-        { type: "B-", count: 25 },
-        { type: "AB+", count: 18 },
-        { type: "AB-", count: 12 },
-        { type: "O+", count: 65 },
-        { type: "O-", count: 30 },
-    ];
+    const [inventory, setInventory] = useState<Record<string, number>>({});
+    useEffect(() => {
+        void fetch("/api/inventory").then(async (response) => {
+            if (!response.ok) return;
+            const data: { inventory?: Array<{ bloodType: string; units: number }> } = await response.json();
+            setInventory(Object.fromEntries((data.inventory ?? []).map((entry) => [entry.bloodType, entry.units])));
+        });
+    }, []);
 
     return (
         <section className="flex min-h-[50dvh] w-full flex-col items-center justify-center gap-y-8 py-12 sm:gap-y-12 sm:py-16 md:gap-y-16 md:py-20">
@@ -18,7 +21,7 @@ export const BloodTypes = () => {
                 Stock Counter
             </h2>
             <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 overflow-hidden">
-                {bloodTypes.map(({ type, count }) => (
+                {BLOOD_TYPES.map((type) => (
                     <div
                         key={type}
                         className="group flex cursor-pointer flex-col items-center justify-center gap-y-2 overflow-hidden rounded-xl border border-foreground/5 p-4 transition-all duration-300 hover:border-theme/40 hover:bg-theme/15 sm:p-6"
@@ -27,7 +30,7 @@ export const BloodTypes = () => {
                             {type}
                         </p>
                         <p className="text-4xl font-bold tabular-nums text-foreground transition-colors sm:text-5xl overflow-hidden">
-                            {count}
+                            {inventory[type] ?? "—"}
                         </p>
                         <span className="text-xs uppercase tracking-widest text-foreground/40">
                             Units

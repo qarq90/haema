@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDate } from "@/lib/utils";
+import { formatDate } from "@/functions/utils";
 import { LuMapPin, LuCalendar, LuClock, LuDroplet } from "react-icons/lu";
 import { Row } from "../ui/row";
 

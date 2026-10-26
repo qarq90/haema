@@ -27,8 +27,7 @@ export async function POST() {
             );
         }
 
-        const username =
-            user.username || email.split("@")[0] || email;
+        const username = user.username || email.split("@")[0] || email;
 
         await pool.query(
             `

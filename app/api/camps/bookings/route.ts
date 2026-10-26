@@ -19,7 +19,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 export async function POST(request: Request) {
     const { userId } = await auth();
     if (!userId) {
-        return NextResponse.json({ error: "Sign in to book a camp slot." }, { status: 401 });
+        return NextResponse.json(
+            { error: "Sign in to book a camp slot." },
+            { status: 401 },
+        );
     }
 
     try {
@@ -36,49 +39,77 @@ export async function POST(request: Request) {
         try {
             body = await request.json();
         } catch {
-            return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Invalid request body." },
+                { status: 400 },
+            );
         }
         if (!isRecord(body)) {
-            return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Invalid request body." },
+                { status: 400 },
+            );
         }
 
         const input: BookingInput = {
             campId: typeof body.campId === "string" ? body.campId.trim() : "",
             slot: typeof body.slot === "string" ? body.slot.trim() : "",
-            fullName: typeof body.fullName === "string" ? body.fullName.trim() : "",
+            fullName:
+                typeof body.fullName === "string" ? body.fullName.trim() : "",
             phone: typeof body.phone === "string" ? body.phone.trim() : "",
             notes: typeof body.notes === "string" ? body.notes.trim() : "",
         };
 
         if (!input.campId || input.campId.length > 160) {
-            return NextResponse.json({ error: "Choose a valid camp." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Choose a valid camp." },
+                { status: 400 },
+            );
         }
         if (!/^\d{2}:\d{2}$/.test(input.slot)) {
-            return NextResponse.json({ error: "Choose a valid time slot." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Choose a valid time slot." },
+                { status: 400 },
+            );
         }
         if (input.fullName.length < 2 || input.fullName.length > 120) {
-            return NextResponse.json({ error: "Enter your full name." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Enter your full name." },
+                { status: 400 },
+            );
         }
         if (!PHONE_RE.test(input.phone)) {
-            return NextResponse.json({ error: "Enter a valid phone number." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Enter a valid phone number." },
+                { status: 400 },
+            );
         }
         if (input.notes.length > 1000) {
-            return NextResponse.json({ error: "Notes must be under 1000 characters." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Notes must be under 1000 characters." },
+                { status: 400 },
+            );
         }
 
         const campResult = await pool.query(
-            "SELECT id, start_time AS \"startTime\", end_time AS \"endTime\" FROM camps WHERE id = $1 AND date >= CURRENT_DATE",
+            'SELECT id, start_time AS "startTime", end_time AS "endTime" FROM camps WHERE id = $1 AND date >= CURRENT_DATE',
             [input.campId],
         );
         const camp = campResult.rows[0];
         if (!camp) {
-            return NextResponse.json({ error: "This camp is no longer available." }, { status: 404 });
+            return NextResponse.json(
+                { error: "This camp is no longer available." },
+                { status: 404 },
+            );
         }
 
         const startTime = String(camp.startTime).slice(0, 5);
         const endTime = String(camp.endTime).slice(0, 5);
         if (!generateSlots(startTime, endTime).includes(input.slot)) {
-            return NextResponse.json({ error: "Choose one of the available camp slots." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Choose one of the available camp slots." },
+                { status: 400 },
+            );
         }
 
         const bookingResult = await pool.query(
@@ -125,7 +156,9 @@ export async function POST(request: Request) {
         const booking = bookingResult.rows[0];
         if (!booking) {
             return NextResponse.json(
-                { error: "This camp has no remaining slots. Please choose another camp." },
+                {
+                    error: "This camp has no remaining slots. Please choose another camp.",
+                },
                 { status: 409 },
             );
         }

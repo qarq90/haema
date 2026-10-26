@@ -1,4 +1,4 @@
-export { cn } from "cn"
+export { cn } from "cn";
 
 export function formatDate(iso: string) {
     return new Date(iso).toLocaleDateString(undefined, {
