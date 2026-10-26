@@ -6,7 +6,7 @@ import { SignInButton } from "@clerk/nextjs";
 
 export const Hero = () => {
     return (
-        <section className="-mt-12 flex min-h-dvh w-full flex-col items-center gap-4 pt-32 px-10 pb-8 md:h-dvh md:min-h-0 md:flex-row md:gap-32 md:pt-0 md:pb-0">
+        <section className="mt-12 flex min-h-dvh w-full flex-col items-center gap-4 pt-32 px-10 pb-8 md:h-dvh md:min-h-0 md:flex-row md:gap-32 md:pt-0 md:pb-0">
             <div className="flex w-full shrink-0 flex-col gap-8 md:h-full md:w-3/5 md:justify-around md:gap-0">
                 <h1 className="relative w-full text-4xl leading-tight sm:text-6xl md:text-8xl md:leading-32">
                     <span>

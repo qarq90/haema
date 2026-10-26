@@ -5,8 +5,7 @@ import { Camps } from "@/components/donate/camps";
 export default function Client() {
     return (
         <main className="min-h-screen">
-            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
-                <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">Give blood locally</p>
+           <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Find a camp.
                     <br />

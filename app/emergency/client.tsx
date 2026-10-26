@@ -111,11 +111,8 @@ export default function Client() {
 
     return (
         <main className="min-h-screen">
-            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
-                <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">
-                    Hospital blood needs
-                </p>
-                <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
+             <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
+                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Help meet urgent needs.
                 </h1>
                 <p className="mt-6 max-w-2xl text-base leading-7 text-foreground/70 sm:text-lg sm:leading-8">

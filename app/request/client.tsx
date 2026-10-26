@@ -19,11 +19,8 @@ export default function Client() {
 
     return (
         <main className="min-h-screen">
-            <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
-                <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">
-                    Blood request
-                </p>
-                <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
+             <section className="max-w-7xl px-4 pt-20 sm:px-10 lg:pt-20">
+                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
                     Find the blood you need.
                 </h1>
                 <p className="mt-6 max-w-2xl text-base leading-7 text-foreground/70 sm:text-lg sm:leading-8">
@@ -31,7 +28,7 @@ export default function Client() {
                 </p>
             </section>
 
-            <section className="mx-auto mt-8 max-w-7xl px-4 sm:px-10">
+            <section className="mx-auto mt-8 sm:px-10">
                 <div className="rounded-2xl bg-theme p-6 text-white sm:p-8 lg:p-10">
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
                         Start here
@@ -61,7 +58,7 @@ export default function Client() {
                 </div>
             </section>
 
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 pt-8 pb-20 sm:px-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:gap-8 lg:pt-12">
+            <div className="mx-auto grid grid-cols-1 gap-6 px-4 pt-8 pb-20 sm:px-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:gap-8 lg:pt-12">
                 <section id="request-form" className="scroll-mt-24 rounded-2xl border border-foreground/10 p-5 sm:p-8">
                     <div className="flex items-start gap-4">
                         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-theme/10 text-theme">
