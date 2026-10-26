@@ -39,6 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-haema Setup 1.0.0.exe
-haema Setup 1.0.0.exe
-haema Setup 1.0.0.exe
+# Electron build artifacts
+/dist/
+*.exe

@@ -2,11 +2,15 @@
     "name": "haema",
     "version": "0.1.0",
     "private": true,
+    "main": "electron/main.cjs",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint"
+        "lint": "eslint",
+        "desktop:dev": "electron .",
+        "desktop:prepare": "next build && node electron/build-standalone.cjs",
+        "desktop:build": "npm run desktop:prepare && electron-builder --win nsis"
     },
     "dependencies": {
         "@base-ui/react": "^1.9.0",
@@ -32,9 +36,39 @@
         "@types/node": "^26",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "electron": "^39.0.0",
+        "electron-builder": "^26.0.12",
         "eslint": "^10",
         "eslint-config-next": "16.4.2",
         "tailwindcss": "^4",
         "typescript": "^7"
+    },
+    "build": {
+        "appId": "com.haema.bloodbank",
+        "productName": "HAEMA Blood Bank",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "electron/**/*",
+            ".next/standalone/**/*",
+            "package.json",
+            "!node_modules/**/*"
+        ],
+        "extraResources": [
+            {
+                "from": ".env.local",
+                "to": "app/.env.local"
+            }
+        ],
+        "win": {
+            "target": "nsis",
+            "signAndEditExecutable": false
+        },
+        "nsis": {
+            "oneClick": false,
+            "perMachine": false,
+            "allowToChangeInstallationDirectory": true
+        }
     }
 }

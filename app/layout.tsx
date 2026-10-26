@@ -3,12 +3,8 @@ import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { UserSync } from "@/components/auth/user-sync";
 import { Footer } from "@/components/footer";
-import { Inter } from "next/font/google";
-import { cn } from "@/functions/utils";
 import { Toaster } from "@/components/ui/toast";
 import { ClerkProvider } from "@clerk/nextjs";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -18,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
     return (
         <ClerkProvider>
-            <html lang="en" className={cn("font-sans", inter.variable)}>
+            <html lang="en" className="font-sans">
                 <body className="min-h-dvh flex flex-col">
                     <Navigation />
                     <UserSync />

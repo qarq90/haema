@@ -1,33 +1,25 @@
-| Date       | Work            | Details                                                          |
-| :--------- | :-------------- | :--------------------------------------------------------------- |
-| 10/07/2026 | Topic Proposal  | Submitted 4 topics to ma'am. All rejected. "BE mein aagae ho"    |
-| 17/07/2026 | Brainstorming   | Team session for new ideas                                       |
-| 24/07/2026 | Brainstorming   | Shortlisted 3 topics (planned SGNP visit)                        |
-| 31/07/2026 | Topic Finalized | Ma'am chose Blood Banking System from 3. "Modi Newspaper topics" |
-| 01/08/2026 | Coding          | Project Structure and Home Page                                  |
-| 06/09/2026 | Coding          | Login and Signup Page                                            |
-| 17/09/2026 | Design          | Old scrapped, Project 2.0                                        |
-| 23/09/2026 | Design          | Design style, UI style                                           |
-| 25/09/2026 | Coding          | Auth via Clerk                                                   |
-| 25/09/2026 | Coding          | About Us, Privacy Policy, Terms of Service, Contact Us, FAQs     |
-| 25/09/2026 | Coding          | Restructuring and Refactoring                                    |
-| 26/09/2026 | Coding          | Home 1.0, QOL                                                    |
-| 27/09/2026 | Coding          | Eligiblity Quiz                                                  |
-| 27/09/2026 | Coding          | Blood and Body Profile                                           |
-| 28/09/2026 | Coding          | Booking                                                          |
+# HAEMA Project Log
 
-| Week No. | Date          | Work Type                              | Work Done                                                                                                      |
-| :------- | :------------ | :------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| Week 1   | 10/07 – 16/07 | Topic Proposal                         | Submitted 4 topics to ma'am. All rejected. "BE mein aagae ho"                                                  |
-| Week 2   | 17/07 – 23/07 | Brainstorming                          | Team session for new ideas                                                                                     |
-| Week 3   | 24/07 – 30/07 | Brainstorming                          | Shortlisted 3 topics (planned SGNP visit)                                                                      |
-| Week 4   | 31/07 – 06/08 | Topic Finalized                        | Ma'am chose Blood Banking System from 3. "Modi Newspaper topics"                                               |
-| Week 5   | 07/08 – 13/08 | Literature Review                      | Literature Review                                                                                              |
-| Week 6   | 14/08 – 20/08 | Research Gaps                          | Research Gaps                                                                                                  |
-| Week 7   | 21/08 – 27/08 | Problem Statement & Objectives         | Problem Statement & Objectives                                                                                 |
-| Week 8   | 28/08 – 03/09 | System Architecture & Project Diagrams | System Architecture & Project Diagrams                                                                         |
-| Week 9   | 04/09 – 10/09 | Tech Stack Planning                    | Tech Stack Planning                                                                                            |
-| Week 10  | 11/09 – 17/09 | Coding                                 | Project Structure and Home Page; Login and Signup Page; Old scrapped, Project 2.0                              |
-| Week 11  | 18/09 – 24/09 | Design                                 | Design style, UI style                                                                                         |
-| Week 12  | 25/09 – 01/10 | Coding                                 | Auth via Clerk, About/Policy/Terms/Contact/FAQs, Refactoring, Home 1.0, Eligibility Quiz, Blood & Body Profile |
-| Week 13  | 02/10 – 08/10 | —                                      | —                                                                                                              |
+| Week | Date / Period | Phase | Work Type | Area / Module | Detailed Work Completed | Outcome / Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Week 1 | 10/07/2026 – 16/07/2026 | Planning | Topic proposal | Project definition | Submitted four possible project topics for review. | The proposed topics were rejected and the team continued brainstorming. |
+| Week 2 | 17/07/2026 – 23/07/2026 | Planning | Brainstorming | Project definition | Held a team brainstorming session to identify a suitable software project. | Several ideas were reviewed for feasibility and relevance. |
+| Week 3 | 24/07/2026 – 30/07/2026 | Planning | Shortlisting | Project definition | Shortlisted three project topics and discussed a planned SGNP visit for further ideation. | The team moved closer to selecting a healthcare-focused project. |
+| Week 4 | 31/07/2026 – 06/08/2026 | Planning | Topic finalization | Blood bank system | Selected the Blood Banking System as the project topic. | HAEMA became the working project direction. |
+| Week 5 | 07/08/2026 – 13/08/2026 | Research | Literature review | Domain research | Studied existing blood donation, blood request, blood bank, and donation-camp workflows. | Established the background needed for the problem statement and feature scope. |
+| Week 6 | 14/08/2026 – 20/08/2026 | Research | Research gaps | Domain research | Identified gaps in connecting donors, recipients, hospitals, blood banks, inventory, and camps. | Helped define the need for a centralized blood-management platform. |
+| Week 7 | 21/08/2026 – 27/08/2026 | Analysis | Problem statement and objectives | Requirements | Documented the project problem statement and defined the main objectives of HAEMA. | Created a foundation for the system requirements and feature roadmap. |
+| Week 8 | 28/08/2026 – 03/09/2026 | Design | System architecture | Architecture and diagrams | Prepared the system architecture and project diagrams for the proposed application. | Clarified the main users, workflows, and system boundaries. |
+| Week 9 | 04/09/2026 – 10/09/2026 | Planning | Technology planning | Tech stack | Evaluated and planned the technology stack for the web application and data layer. | Prepared the project for implementation with Next.js, TypeScript, Clerk, and Neon. |
+| Week 10 | 11/09/2026 – 17/09/2026 | Development | Initial implementation | Application foundation | Created the initial project structure and home page, then implemented the first login and signup pages. | The first version was reviewed and later replaced as the project direction evolved. |
+| Week 10 | 11/09/2026 – 17/09/2026 | Development | Iteration | Project redesign | Scrapped the earlier version and started Project 2.0 with a revised structure and direction. | Established the current application foundation. |
+| Week 11 | 18/09/2026 – 24/09/2026 | Design | UI design | Design system | Defined the visual design style, page composition, and interface direction for HAEMA. | Created the design language used by the current pages and components. |
+| Week 12 | 25/09/2026 | Development | Authentication | Clerk integration | Added Clerk authentication and began synchronizing authenticated users with the application. | Established the account and identity layer for donor and recipient workflows. |
+| Week 12 | 25/09/2026 | Development | Informational pages | About, privacy, terms, contact, FAQs | Implemented About Us, Privacy Policy, Terms of Service, Contact Us, and FAQs pages. | Added supporting information and user guidance pages. |
+| Week 12 | 25/09/2026 | Development | Refactoring | Application structure | Restructured and refactored parts of the project to improve organization and maintainability. | Improved the foundation for feature-based development. |
+| Week 12 | 26/09/2026 | Development | Home page | Home dashboard | Implemented the Home 1.0 experience and quality-of-life improvements. | Added the primary entry point for the blood-management workflows. |
+| Week 12 | 27/09/2026 | Development | Eligibility | Donor eligibility quiz | Added the donor eligibility questionnaire and result flow. | Users can receive eligibility guidance before proceeding with donation activities. |
+| Week 12 | 27/09/2026 | Development | Donor profile | Blood and body profile | Implemented blood and body profile information for donor-related workflows. | Added the profile data needed for eligibility and donation coordination. |
+| Week 12 | 28/09/2026 | Development | Booking | Donation camps and appointments | Added the booking workflow for donation camps. | Users can proceed from camp discovery toward participation booking. |
+| Week 13 | 02/10/2026 – 08/10/2026 | Development | — | — | No project-log entry was recorded for this period. | — |
+| Week 16 | 26/10/2026 | Documentation | README and project documentation | Documentation | Replaced the default Next.js README with project-specific setup instructions, features, routes, database migration guidance, project structure, privacy notes, and development guidelines. | Documentation now reflects the current HAEMA implementation and Phase 1 scope. |
