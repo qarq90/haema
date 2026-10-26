@@ -1,0 +1,9 @@
+{
+    "appId": "com.haema.bloodbank",
+    "appName": "HAEMA Blood Bank",
+    "webDir": "out",
+    "server": {
+        "url": "https://haema-ruby.vercel.app/",
+        "cleartext": false
+    }
+}
